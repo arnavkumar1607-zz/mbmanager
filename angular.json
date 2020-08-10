@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "mbmanager"
+    }
+  },
+  "defaultProject": "mbmanager",
+  "cli": {
+    "analytics": false
+  }
 }

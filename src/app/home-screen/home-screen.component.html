@@ -1,0 +1,96 @@
+<section id="home_screen">
+    <div class="top_title">Employee List</div>
+    <div class="top_buttons">
+        <span (click)="this.overlay = true; this.sortPopup = true;">Sort</span>
+        <span (click)="this.overlay = true; this.addEmpPopup = true;">Add Employee</span>
+    </div>
+    <section id="emp_list">
+        <table border="1px solid teal" style="border-radius: 4px;">
+            <tr class="first_row">
+                <td>Emp ID</td>
+                <td>Name</td>
+                <td>Action</td>
+            </tr>
+            <ng-container *ngFor="let emp of this.emp_data; let i = index;">
+                <tr class="emp_details">
+                    <td>{{emp.empid}}</td>
+                    <td>{{emp.firstname}} {{emp.lastname}}</td>
+                    <td>
+                        <span (click)="updateEmp(emp.empid);">Update</span>
+                        <span (click)="deleteEmp(emp.empid);">Delete</span>
+                    </td>
+                </tr>
+            </ng-container>
+        </table>
+    </section>
+</section>
+<div id="overlay" *ngIf="overlay" (click)="overlayClick();"></div>
+<section id="sort_popup" *ngIf="this.sortPopup" [style.top.px]="(win.innerHeight / 2) - 100">
+    <div>Sort By</div>
+    <div (click)="this.sortBy('firstname')">Employee First Name</div>
+    <div (click)="this.sortBy('lastname')">Employee Last Name</div>
+</section>
+<section id="addEmp_popup" *ngIf="this.addEmpPopup || this.confirmEmpData">
+    <section id="add_popup" *ngIf="this.addEmpPopup">
+        <div class="title">Enter Employee Details</div>
+        <form [formGroup]="addEmpForm" (ngSubmit)="this.addEmployee()">
+            <table>
+                <tr>
+                    <td><span>First Name</span></td>
+                    <td> <input type="text" placeholder="Enter your first name" formControlName="fname"></td>
+                </tr>
+                <tr>
+                    <td><span>Last Name</span></td>
+                    <td> <input type="text" placeholder="Enter your last name" formControlName="lname"></td>
+                </tr>
+                <tr>
+                    <td><span>Address</span></td>
+                    <td> <input type="textarea" placeholder="Enter your Address" formControlName="address"></td>
+                </tr>
+                <tr>
+                    <td><span>DOB</span></td>
+                    <td> <input type="text" placeholder="Enter your DOB" formControlName="dob"></td>
+                </tr>
+                <tr>
+                    <td><span>Mobile</span></td>
+                    <td> <input type="text" placeholder="Enter your Mobile" formControlName="mobile"></td>
+                </tr>
+                <tr>
+                    <td><span>City</span></td>
+                    <td> <input type="text" placeholder="Enter your City" formControlName="city"></td>
+                </tr>
+            </table>
+            <button type="submit">Add Employee</button>
+        </form>
+    </section>
+    <section *ngIf="this.confirmEmpData" id="confirmData">
+        <div class="title">Click confirm to Add Data</div>
+        <table>
+            <tr>
+                <td>First Name : </td>
+                <td>{{this.addEmpForm.value.fname}}</td>
+            </tr>
+            <tr>
+                <td>Last Name : </td>
+                <td>{{this.addEmpForm.value.lname}}</td>
+            </tr>
+            <tr>
+                <td>Address : </td>
+                <td>{{this.addEmpForm.value.address}}</td>
+            </tr>
+            <tr>
+                <td>DOB : </td>
+                <td>{{this.addEmpForm.value.dob}}</td>
+            </tr>
+            <tr>
+                <td>Mobile : </td>
+                <td>{{this.addEmpForm.value.mobile}}</td>
+            </tr>
+            <tr>
+                <td>City : </td>
+                <td>{{this.addEmpForm.value.city}}</td>
+            </tr>
+        </table>
+        <button type="submit" (click)="this.saveEmpData();">Confirm</button>
+    </section>
+</section>

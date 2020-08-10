@@ -1,0 +1,37 @@
+<section id="signup_screen">
+    <div class="title">Sign Up</div>
+    <form [formGroup]="signupForm" (ngSubmit)="this.signUp()">
+        <table>
+            <tr>
+                <td><span>Email</span></td>
+                <td> <input type="text" placeholder="Enter your email" formControlName="email"></td>
+            </tr>
+            <tr>
+                <td><span>First Name</span></td>
+                <td> <input type="text" placeholder="Enter your first name" formControlName="fname"></td>
+            </tr>
+            <tr>
+                <td><span>Last Name</span></td>
+                <td> <input type="text" placeholder="Enter your last name" formControlName="lname"></td>
+            </tr>
+            <tr>
+                <td><span>Password</span></td>
+                <td> <input type="text" placeholder="Enter your Password" formControlName="password"></td>
+            </tr>
+            <tr>
+                <td><span>Address</span></td>
+                <td> <input type="textarea" placeholder="Enter your Address" formControlName="address"></td>
+            </tr>
+            <tr>
+                <td><span>DOB</span></td>
+                <td> <input type="text" placeholder="Enter your DOB" formControlName="dob"></td>
+            </tr>
+            <tr>
+                <td><span>Company</span></td>
+                <td> <input type="text" placeholder="Enter your company" formControlName="company"></td>
+            </tr>
+        </table>
+        <button type="submit">Login</button>
+        <a routerLink="/login">Already a User ? Please click here to Login.</a>
+    </form>
+</section>

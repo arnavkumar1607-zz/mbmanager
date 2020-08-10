@@ -1,0 +1,53 @@
+#signup_screen {
+  .title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600px;
+    position: relative;
+    margin-top: 15px;
+  }
+  form {
+    margin-top: 15px;
+    text-align: center;
+    a {
+      position: relative;
+      display: block;
+      font-size: 12px;
+      color: #16169a;
+      padding: 15px;
+    }
+    position: relative;
+    table {
+        margin: auto;
+        text-align: left;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+      tr {
+        padding-top: 10px;
+        span {
+          font-weight: 500;
+          text-decoration: underline;
+          vertical-align: sub;
+        }
+        input {
+          margin-left: 15px;
+          height: 25px;
+          width: 200px;
+        }
+      }
+    }
+    > div {
+      margin: 10px;
+      padding-top: 10px;
+    }
+    button {
+      background-color: coral;
+      margin-top: 10px;
+      border-radius: 4px;
+      height: 30px;
+      width: 100px;
+      border-color: #ffa68a;
+      font-weight: 500;
+    }
+  }
+}

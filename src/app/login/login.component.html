@@ -1,0 +1,19 @@
+<section id="login_screen">
+    <div class="title">Login</div>
+    <form [formGroup]="loginForm" (ngSubmit)="Login()">
+        <div>
+            <label>
+                <span>Username</span>
+                <input type="text" placeholder="Enter your username" formControlName="username">
+            </label>
+        </div>
+        <div>
+            <label>
+                <span>Password</span>
+                <input type="text" placeholder="Enter your password" formControlName="password">
+            </label>
+        </div>
+        <button type="submit">Login</button>
+        <a routerLink="/sign-up">New User ? Please click here to Sign up.</a>
+    </form>
+</section>
