@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators  } from '@angular/forms';
 import { HttpHeaders , HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Cookie } from 'ng2-cookies/ng2-cookies'; 
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +11,10 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  submitted = false;
   loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
   })
 
   constructor(private _app: AppComponent, private _router : Router, private _http : HttpClient) { }
@@ -23,7 +23,15 @@ export class LoginComponent implements OnInit {
     this._app.screen_title = 'Manager Login';
   }
 
+  get f() { return this.loginForm.controls; }
+
   Login(){
+    console.log('login')
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      alert("Please fill required field"); 
+      return;
+  } else {
     let email = this.loginForm.value.username;
     let postdata = this.loginForm.value;
     let options = {
@@ -36,7 +44,10 @@ export class LoginComponent implements OnInit {
          Cookie.set('MB_auth' , email);
          this._app.manager_email = email;
          this._router.navigateByUrl('');
+      } else {
+        alert(res);
       }
     })
+  }
   }
 }

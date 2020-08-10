@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { FormControl , FormGroup } from '@angular/forms';
+import { FormControl , FormGroup, Validators } from '@angular/forms';
 import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Router } from '@angular/router';
@@ -19,16 +19,17 @@ export class HomeScreenComponent implements OnInit {
   emp_data = [];
   updateForm : boolean = false;
   empId : any;
-
+  pattern1 =  "^[0-9_-]{10,12}";
   addEmpForm = new FormGroup({
-    fname: new FormControl(''),
-    lname: new FormControl(''),
-    address: new FormControl(''),
-    dob: new FormControl(''),
-    mobile: new FormControl(''),
-    city: new FormControl('')
+    fname: new FormControl('', Validators.required),
+    lname: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    dob: new FormControl('', Validators.required),
+    mobile: new FormControl('', [Validators.required, Validators.pattern(this.pattern1)]),
+    city: new FormControl(''),
   })
-
+  
+  submitted = false;
   constructor(private _app : AppComponent , private _http : HttpClient , private _router : Router ) { }
 
   ngOnInit(): void {
@@ -46,6 +47,7 @@ export class HomeScreenComponent implements OnInit {
       this.emp_data = res[0];
     })
   }
+  get f() { return this.addEmpForm.controls; }
 
   updateEmp(empid){
     this.empId = empid;
@@ -62,13 +64,7 @@ export class HomeScreenComponent implements OnInit {
         mobile : res[0].mobile,
         city : res[0].city,
        })
-      //  this.addEmpForm.controls.fname = res[0].firstname;
-      //  this.addEmpForm.controls.lname = res[0].lastname;
-      //  this.addEmpForm.controls.address = res[0].address;
-      //  this.addEmpForm.controls.dob = res[0].dob;
-      //  this.addEmpForm.controls.mobile = res[0].mobile;
-      //  this.addEmpForm.controls.city = res[0].city;
-     });
+       });
   }
 
   deleteEmp(empid){
@@ -101,8 +97,15 @@ export class HomeScreenComponent implements OnInit {
   }
 
   addEmployee(){
+    this.submitted = true;
+    if (this.addEmpForm.invalid) {
+      alert("Please fill required field"); 
+      return;
+  } else{
+
     this.addEmpPopup = false;
     this.confirmEmpData = true;
+   }
   }
 
   overlayClick(){

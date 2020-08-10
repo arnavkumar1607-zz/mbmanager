@@ -40,20 +40,47 @@
                     <td> <input type="text" placeholder="Enter your first name" formControlName="fname"></td>
                 </tr>
                 <tr>
-                    <td><span>Last Name</span></td>
-                    <td> <input type="text" placeholder="Enter your last name" formControlName="lname"></td>
+                    <td><span>First Name</span><span class="required-field">*</span></td>
+                    <td> <input type="text" placeholder="Enter your first name" formControlName="fname">
+                        <div *ngIf="f.fname.touched && f.fname.errors" class="invalid-feedback text-red">
+                            <div *ngIf="f.fname.errors.required">First Name is required</div>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><span>Address</span></td>
-                    <td> <input type="textarea" placeholder="Enter your Address" formControlName="address"></td>
+                    <td><span>Last Name</span><span class="required-field">*</span></td>
+                    <td> <input type="text" placeholder="Enter your last name" formControlName="lname">
+                        <div *ngIf="f.lname.touched && f.lname.errors" class="invalid-feedback text-red">
+                            <div *ngIf="f.lname.errors.required">Last Name is required</div>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><span>DOB</span></td>
-                    <td> <input type="text" placeholder="Enter your DOB" formControlName="dob"></td>
+                    <td><span>Address</span><span class="required-field">*</span></td>
+                    <td> <input type="textarea" placeholder="Enter your Address" formControlName="address">
+                        <div *ngIf="f.address.touched && f.address.errors" class="invalid-feedback text-red">
+                            <div *ngIf="f.address.errors.required">Address is required</div>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <td><span>Mobile</span></td>
-                    <td> <input type="text" placeholder="Enter your Mobile" formControlName="mobile"></td>
+                    <td><span>DOB</span><span class="required-field">*</span></td>
+                    <td> <input type="text" placeholder="Enter your DOB" formControlName="dob">
+                        <div *ngIf="f.dob.touched && f.dob.errors" class="invalid-feedback text-red">
+                            <div *ngIf="f.dob.errors.required">dob is required</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>Mobile</span><span class="required-field">*</span></td>
+                    <td> <input type="text" placeholder="Enter your Mobile" formControlName="mobile">
+                        <div *ngIf="f.mobile.touched && f.mobile.errors" class="invalid-feedback text-red">
+                            <div *ngIf="f.mobile.errors.required"> phone no is required</div>
+                            <div *ngIf="addEmpForm.controls.mobile.errors.pattern">
+                                Please add 10 digit number
+                            </div>
+                        </div>
+                    </td> 
                 </tr>
                 <tr>
                     <td><span>City</span></td>

@@ -3,20 +3,38 @@
     <form [formGroup]="signupForm" (ngSubmit)="this.signUp()">
         <table>
             <tr>
-                <td><span>Email</span></td>
-                <td> <input type="text" placeholder="Enter your email" formControlName="email"></td>
+                <td><span>Email</span><span class="required-field">*</span></td>
+                <td> <input type="text" placeholder="Enter your email" formControlName="email">
+                    <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback text-red">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td><span>First Name</span></td>
-                <td> <input type="text" placeholder="Enter your first name" formControlName="fname"></td>
+                <td><span>First Name</span><span class="required-field">*</span></td>
+                <td> <input type="text" placeholder="Enter your first name" formControlName="fname">
+                    <div *ngIf="f.fname.touched && f.fname.errors" class="invalid-feedback text-red">
+                        <div *ngIf="f.fname.errors.required">First Name is required</div>
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td><span>Last Name</span></td>
-                <td> <input type="text" placeholder="Enter your last name" formControlName="lname"></td>
+                <td><span>Last Name</span><span class="required-field">*</span></td>
+                <td> <input type="text" placeholder="Enter your last name" formControlName="lname">
+                    <div *ngIf="f.lname.touched && f.lname.errors" class="invalid-feedback text-red">
+                        <div *ngIf="f.lname.errors.required">Last Name is required</div>
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td><span>Password</span></td>
-                <td> <input type="text" placeholder="Enter your Password" formControlName="password"></td>
+                <td><span>Password</span><span class="required-field">*</span></td>
+                <td> <input type="text" placeholder="Enter your Password" formControlName="password">
+                    <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback text-red">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><span>Address</span></td>
@@ -27,11 +45,15 @@
                 <td> <input type="text" placeholder="Enter your DOB" formControlName="dob"></td>
             </tr>
             <tr>
-                <td><span>Company</span></td>
-                <td> <input type="text" placeholder="Enter your company" formControlName="company"></td>
+                <td><span>Company</span><span class="required-field">*</span></td>
+                <td> <input type="text" placeholder="Enter your company" formControlName="company">
+                    <div *ngIf="f.company.touched && f.company.errors" class="invalid-feedback text-red">
+                        <div *ngIf="f.company.errors.required">Company is required</div>
+                    </div>
+                </td>
             </tr>
         </table>
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
         <a routerLink="/login">Already a User ? Please click here to Login.</a>
     </form>
 </section>

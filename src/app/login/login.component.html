@@ -3,14 +3,21 @@
     <form [formGroup]="loginForm" (ngSubmit)="Login()">
         <div>
             <label>
-                <span>Username</span>
+                <span>Username</span><span class="required-field">*</span>
                 <input type="text" placeholder="Enter your username" formControlName="username">
+                <div *ngIf="f.username.touched && f.username.errors" class="invalid-feedback text-red">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
             </label>
         </div>
         <div>
             <label>
-                <span>Password</span>
+                <span>Password</span><span class="required-field">*</span>
                 <input type="text" placeholder="Enter your password" formControlName="password">
+                <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback text-red">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+
+                </div>
             </label>
         </div>
         <button type="submit">Login</button>
