@@ -36,10 +36,6 @@
         <form [formGroup]="addEmpForm" (ngSubmit)="this.addEmployee()">
             <table>
                 <tr>
-                    <td><span>First Name</span></td>
-                    <td> <input type="text" placeholder="Enter your first name" formControlName="fname"></td>
-                </tr>
-                <tr>
                     <td><span>First Name</span><span class="required-field">*</span></td>
                     <td> <input type="text" placeholder="Enter your first name" formControlName="fname">
                         <div *ngIf="f.fname.touched && f.fname.errors" class="invalid-feedback text-red">
