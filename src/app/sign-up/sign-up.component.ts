@@ -40,6 +40,8 @@ export class SignUpComponent implements OnInit {
     this._http.post('http://localhost:5000/api/signup', postdata , options).subscribe( res=>{
       if(res === 'success'){
         this._router.navigateByUrl('login');
+      } else {
+        alert(res);
       }
     })
     }
