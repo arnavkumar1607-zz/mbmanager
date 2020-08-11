@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td><span>Password</span><span class="required-field">*</span></td>
-                <td> <input type="text" placeholder="Enter your Password" formControlName="password">
+                <td> <input type="password" placeholder="Enter your Password" formControlName="password">
                     <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback text-red">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                         <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>

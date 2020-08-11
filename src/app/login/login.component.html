@@ -13,7 +13,7 @@
         <div>
             <label>
                 <span>Password</span><span class="required-field">*</span>
-                <input type="text" placeholder="Enter your password" formControlName="password">
+                <input type="password" placeholder="Enter your password" formControlName="password">
                 <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback text-red">
                     <div *ngIf="f.password.errors.required">Password is required</div>
 
